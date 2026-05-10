@@ -49,6 +49,7 @@ export default function RegisterPage() {
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("role", res.data.user.role);
       localStorage.setItem("user", JSON.stringify(res.data.user));
+      localStorage.setItem("userId", res.data.user._id || res.data.user.id);
 
       setMessage("Registration successful");
 

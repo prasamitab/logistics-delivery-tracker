@@ -12,14 +12,14 @@ export default function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage("");
-    
+
     try {
       const res = await api.post("/api/auth/login", { email, password });
       const { token, user } = res.data;
     
       const role = (user?.role || "").trim().toLowerCase();
     
-      saveAuth(token, role);
+      saveAuth(token, role, user?._id || user?.id);
     
       if (role === "admin") {
         navigate("/admin");
