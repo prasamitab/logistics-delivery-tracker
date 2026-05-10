@@ -44,7 +44,7 @@ export default function RegisterPage() {
         vehicleNumber: form.role === "driver" ? form.vehicleNumber : "",
       };
 
-      const res = await api.post("/auth/register", payload);
+      const res = await api.post("/api/auth/register", payload);
 
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("role", res.data.user.role);
