@@ -25,13 +25,13 @@ export default function AdminPage() {
       setError("");
 
       const [shipmentRes, driverRes, ticketRes] = await Promise.all([
-        api.get("/shipments", {
+        api.get("/api/shipments", {
           headers: { Authorization: `Bearer ${token}` },
         }),
-        api.get("/drivers", {
+        api.get("/api/drivers", {
           headers: { Authorization: `Bearer ${token}` },
         }),
-        api.get("/support", {
+        api.get("/api/support", {
           headers: { Authorization: `Bearer ${token}` },
         }),
       ]);

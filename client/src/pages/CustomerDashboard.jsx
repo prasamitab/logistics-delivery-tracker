@@ -13,7 +13,7 @@ export default function CustomerDashboard() {
         setLoading(true);
         setError("");
 
-        const res = await api.get("/shipments/customer/my-shipments");
+        const res = await api.get("/api/shipments/customer/my-shipments");
         setShipments(res.data.shipments || []);
       } catch (err) {
         console.error(err);

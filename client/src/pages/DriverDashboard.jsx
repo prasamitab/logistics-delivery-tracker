@@ -16,7 +16,7 @@ export default function DriverDashboard() {
         setLoading(true);
         setError("");
 
-        const res = await api.get("/shipments/driver/me/assignments", {
+        const res = await api.get("/api/shipments/driver/me/assignments", {
           headers: { Authorization: `Bearer ${token}` },
         });
 
