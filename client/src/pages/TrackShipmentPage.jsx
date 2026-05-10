@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import api from "../api";
+import { getUserId } from "../auth";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import L from "leaflet";
 
@@ -53,12 +54,7 @@ export default function TrackShipmentPage() {
   const [loading, setLoading] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
 
-  const storedUser =
-    JSON.parse(localStorage.getItem("user")) ||
-    JSON.parse(localStorage.getItem("loggedInUser")) ||
-    null;
-
-  const userId = storedUser?._id || storedUser?.id || "";
+  const userId = getUserId();
 
   const handleSearch = async (e) => {
     e.preventDefault();
