@@ -6,11 +6,13 @@ const http = require("http");
 const { Server } = require("socket.io");
 const connectDB = require("./config/db");
 
+console.log("Loading routes...");
 const paymentRoutes = require("./routes/paymentRoutes");
 
 const app = express();
 const server = http.createServer(app);
 
+console.log("Creating Socket.IO server...");
 const io = new Server(server, {
   cors: {
     origin: "*",
@@ -25,6 +27,7 @@ app.get("/api/health", (req, res) => {
   res.json({ status: "ok", message: "Logistics API is running" });
 });
 
+console.log("Registering routes...");
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/shipments", require("./routes/shipmentRoutes"));
 app.use("/api/scans", require("./routes/scanRoutes"));
@@ -45,13 +48,14 @@ const PORT = process.env.PORT || 5001;
 
 const startServer = async () => {
   try {
+    console.log("Starting server...");
     await connectDB();
 
     server.listen(PORT, () => {
       console.log(`Server running on port ${PORT}`);
     });
   } catch (err) {
-    console.error("Server startup error:", err.message);
+    console.error("Server startup error:", err);
     process.exit(1);
   }
 };
