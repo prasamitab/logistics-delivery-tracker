@@ -91,7 +91,7 @@ export default function BookingPage() {
         notes: form.notes,
       };
 
-      const res = await api.post("/shipments/customer-booking", payload, {
+      const res = await api.post("/api/shipments/customer-booking", payload, {
         headers: token
           ? { Authorization: `Bearer ${token}` }
           : {},

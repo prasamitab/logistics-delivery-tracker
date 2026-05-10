@@ -72,7 +72,7 @@ export default function TrackShipmentPage() {
 
     try {
       setLoading(true);
-      const res = await api.get(`/shipments/${trackingId.trim()}`);
+      const res = await api.get(`/api/shipments/${trackingId.trim()}`);
       console.log("TRACK RESPONSE:", res.data);
       console.log("CURRENT LOCATION:", res.data?.shipment?.currentLocation);
       setData(res.data);
@@ -88,7 +88,7 @@ export default function TrackShipmentPage() {
     if (!trackingId.trim()) return;
 
     try {
-      const res = await api.get(`/shipments/${trackingId.trim()}`);
+      const res = await api.get(`/api/shipments/${trackingId.trim()}`);
       setData(res.data);
       setRefreshKey((prev) => prev + 1);
     } catch (err) {

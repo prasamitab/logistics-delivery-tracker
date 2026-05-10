@@ -138,7 +138,7 @@ export default function ScanPage() {
         lng: lng ? Number(lng) : null,
       };
 
-      const res = await api.post("/shipments/scan", payload, {
+      const res = await api.post("/api/shipments/scan", payload, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

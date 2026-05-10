@@ -15,7 +15,7 @@ export default function ManifestPage() {
         setLoading(true);
         setMessage("");
 
-        const res = await api.get(`/shipments/${trackingId}`);
+        const res = await api.get(`/api/shipments/${trackingId}`);
         const shipmentData = res.data?.shipment || res.data;
         setShipment(shipmentData || null);
       } catch (err) {

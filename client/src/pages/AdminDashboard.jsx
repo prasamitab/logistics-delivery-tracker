@@ -184,7 +184,7 @@ export default function AdminPage() {
       setSuccess("");
 
       await api.put(
-        `/shipments/${shipmentId}/assign-driver`,
+        `/api/shipments/${shipmentId}/assign-driver`,
         { driverId },
         {
           headers: { Authorization: `Bearer ${token}` },
