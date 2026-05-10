@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const API_BASE = "http://localhost:5001/api";
+import { API_BASE_URL } from "../auth";
+
+const API_BASE = `${API_BASE_URL}/api`;
 
 const loadRazorpayScript = () => {
   return new Promise((resolve) => {
