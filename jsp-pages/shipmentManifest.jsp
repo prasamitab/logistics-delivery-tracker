@@ -1,0 +1,11 @@
+const url = `http://localhost:8080/jsp-pages/deliveryReceipt.jsp
+?trackingId=${shipment.trackingId}
+&receiverName=${shipment.receiverName}
+&receiverPhone=${shipment.receiverPhone}
+&deliveryAddress=${shipment.deliveryAddress}
+&parcelType=${shipment.parcelType}
+&weight=${shipment.weight}
+&deliveredAt=${shipment.deliveredAt}
+&courierName=${shipment.assignedDriver?.name}
+&parcelCondition=Delivered
+&remarks=Delivered Successfully`;

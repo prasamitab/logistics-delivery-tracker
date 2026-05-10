@@ -1,0 +1,15 @@
+const url = `http://localhost:8080/jsp-pages/shipmentManifest.jsp
+?trackingId=${shipment.trackingId}
+&senderName=${shipment.senderName}
+&senderPhone=${shipment.senderPhone}
+&receiverName=${shipment.receiverName}
+&receiverPhone=${shipment.receiverPhone}
+&origin=${shipment.origin}
+&destination=${shipment.destination}
+&pickupAddress=${shipment.pickupAddress}
+&deliveryAddress=${shipment.deliveryAddress}
+&parcelType=${shipment.parcelType}
+&weight=${shipment.weight}
+&status=${shipment.currentStatus}
+&driverName=${shipment.assignedDriver?.name}
+&currentLocation=${shipment.currentLocation}`;
