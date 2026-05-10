@@ -12,15 +12,15 @@ export default function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage("");
-
+    
     try {
-      const res = await api.post("/auth/login", { email, password });
+      const res = await api.post("/api/auth/login", { email, password });
       const { token, user } = res.data;
-
+    
       const role = (user?.role || "").trim().toLowerCase();
-
+    
       saveAuth(token, role);
-
+    
       if (role === "admin") {
         navigate("/admin");
       } else if (role === "driver") {
