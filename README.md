@@ -1,100 +1,226 @@
-Logistics Delivery Tracker
+# Logistics Delivery Tracker
+
 A full-stack logistics management web application that helps customers, drivers, and administrators manage the complete shipment lifecycle—from booking and driver assignment to real-time tracking, delivery confirmation, payments, and support tickets.
 
 The platform provides role-based dashboards and a centralized workflow for tracking parcel movement, updating delivery milestones, monitoring driver assignments, and resolving customer complaints. It is designed to make logistics operations more transparent, organized, and easier to manage.
 
-Features
-Secure user registration and login with role-based access.
+## Live Demo
 
-Separate dashboards for Admin, Driver, and Customer users.
+- **Frontend:** [https://logistics-delivery-tracker.vercel.app](https://logistics-delivery-tracker.vercel.app)
+- **Backend:** Deployed on Render
 
-Customer shipment booking with sender, receiver, origin, and destination details.
+## Features
 
-Unique tracking ID generation for each shipment.
+- Secure user registration and login using JWT authentication
+- Role-based access for Admin, Driver, and Customer users
+- Customer shipment booking
+- Unique tracking ID generation for each shipment
+- Shipment status timeline and live delivery progress
+- Live map-based shipment location using OpenStreetMap and React Leaflet
+- Admin shipment management and driver assignment
+- Driver dashboard for assigned deliveries
+- Parcel scanning and shipment milestone updates
+- Payment status management with payment-method selection
+- Customer support ticket and complaint system
+- Delivery receipt page for completed shipments
+- Responsive UI for desktop and mobile devices
 
-Real-time shipment tracking with status timeline and live map location.
+## User Roles
 
-Driver assignment and shipment management by administrators.
+| Role | Capabilities |
+|---|---|
+| **Admin** | Manage shipments, assign drivers, monitor logistics operations, and review support tickets |
+| **Driver** | View assigned deliveries, scan parcels, update shipment milestones, and share current location |
+| **Customer** | Book shipments, track parcels, view live progress, make payments, access delivery receipts, and raise complaints |
 
-Driver scan/update workflow for parcel milestones and delivery progress.
+## Technology Stack
 
-Payment section with selectable payment methods and payment status tracking.
+### Frontend
 
-Support ticket and complaint system for customers.
+- React
+- React Router DOM
+- Axios
+- React Leaflet
+- Leaflet
+- OpenStreetMap
+- CSS
 
-Delivery receipt view for completed shipments.
+### Backend
 
-Live updates for shipment status, location, payment status, and support status.
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JSON Web Tokens (JWT)
+- REST APIs
 
-Responsive modern interface built for desktop and mobile use.
+### Deployment
 
-User Roles
-Role	Main capabilities
-Admin	Manage shipments, assign drivers, monitor operations, and view support requests
-Driver	View assigned shipments, update parcel status, scan milestones, and update live location
-Customer	Book shipments, track parcels, view delivery progress, make payments, and raise support tickets
-Technology Stack
-Frontend
-React
+- **Frontend:** Vercel
+- **Backend:** Render
 
-React Router
+## Core Workflow
 
-Axios
+1. A customer registers and logs in to the platform.
+2. The customer creates a shipment booking with sender, receiver, origin, and destination details.
+3. The system generates a unique tracking ID for the shipment.
+4. An administrator reviews the shipment and assigns a driver.
+5. The driver views assigned shipments and updates shipment status through parcel scans and delivery milestones.
+6. The customer tracks the shipment using the tracking ID, shipment timeline, and live map.
+7. The customer can view and update payment information.
+8. If there is an issue, the customer can raise a support ticket or complaint.
+9. After delivery is complete, the customer can view the delivery receipt.
 
-React Leaflet and OpenStreetMap
+## Project Structure
 
-CSS
+```text
+logistics-delivery-tracker/
+│
+├── client/                     # React frontend
+│   ├── src/
+│   │   ├── components/          # Reusable UI components
+│   │   ├── pages/               # Admin, Driver, Customer, Tracking pages
+│   │   ├── api.js               # Axios API configuration
+│   │   ├── auth.js              # Authentication helpers
+│   │   └── App.jsx
+│   └── package.json
+│
+├── server/                     # Node.js and Express backend
+│   ├── controllers/             # Business logic
+│   ├── middleware/              # JWT authentication middleware
+│   ├── models/                  # MongoDB Mongoose models
+│   ├── routes/                  # API routes
+│   ├── server.js                # Express server entry point
+│   └── package.json
+│
+└── README.md
+```
 
-Backend
-Node.js
+## Installation and Setup
 
-Express.js
+### 1. Clone the repository
 
-MongoDB
+```bash
+git clone [https://github.com/your-username/logistics-delivery-tracker.git](https://github.com/your-username/logistics-delivery-tracker.git)
+cd logistics-delivery-tracker
+```
 
-Mongoose
+### 2. Set up the backend
 
-JWT authentication
+```bash
+cd server
+npm install
+```
 
-REST APIs
+Create a `.env` file inside the `server` folder:
 
-Deployment
-Frontend: Vercel
+```env
+PORT=5001
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+```
 
-Backend: Render
+Start the backend server:
 
-Core Workflow
-A customer registers and logs in.
+```bash
+npm run dev
+```
 
-The customer books a shipment and receives a unique tracking ID.
+or:
 
-An administrator assigns a driver to the shipment.
+```bash
+node server.js
+```
 
-The driver updates shipment milestones, scans parcels, and shares current location details.
+### 3. Set up the frontend
 
-The customer tracks the shipment through the tracking portal and live map.
+Open another terminal window:
 
-The customer can complete payment, view delivery details, and raise a support ticket if needed.
+```bash
+cd client
+npm install
+```
 
-Once delivery is completed, the customer can view the delivery receipt.
+Create a `.env` file inside the `client` folder:
 
-Live Demo
-Frontend: https://logistics-delivery-tracker.vercel.app
+```env
+VITE_API_BASE_URL=http://localhost:5001
+```
 
-Project Objective
-The objective of this project is to build a practical logistics and delivery tracking system that improves visibility across the delivery process. It demonstrates authentication, role-based authorization, CRUD operations, REST API integration, real-time-style tracking, map integration, payment workflow, and customer support handling in one complete web application.
+Start the React development server:
 
-Future Enhancements
-Real payment gateway integration using Razorpay or Stripe.
+```bash
+npm run dev
+```
 
-Push/email/SMS notifications for shipment updates.
+## API Route Pattern
 
-Route optimization and estimated delivery-time prediction.
+All backend routes use the `/api` prefix.
 
-QR code or barcode generation for shipments.
+Examples:
 
-Driver performance analytics and delivery reports.
+```text
+POST /api/auth/register
+POST /api/auth/login
 
-File uploads for delivery proof and customer invoices.
+GET  /api/shipments/:trackingId
+POST /api/shipments/customer-booking
+POST /api/shipments/scan
+GET  /api/shipments/driver/me/assignments
+GET  /api/shipments/customer/my-shipments
 
-Enhanced real-time location updates using WebSockets.
+GET  /api/drivers
+GET  /api/support
+```
+
+## Environment Variables
+
+### Backend `.env`
+
+```env
+PORT=5001
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_secure_jwt_secret
+```
+
+### Frontend `.env`
+
+For local development:
+
+```env
+VITE_API_BASE_URL=http://localhost:5001
+```
+
+For production deployment:
+
+```env
+VITE_API_BASE_URL=[https://your-render-backend-url.onrender.com](https://your-render-backend-url.onrender.com)
+```
+
+## Key Learning Outcomes
+
+This project demonstrates:
+
+- Full-stack web application development
+- React component-based frontend development
+- REST API development with Express.js
+- MongoDB database integration using Mongoose
+- JWT-based authentication and authorization
+- Role-based access control
+- API integration using Axios
+- Shipment lifecycle management
+- Map integration with OpenStreetMap
+- Deployment using Vercel and Render
+- Error handling and environment-variable configuration
+
+## Future Enhancements
+
+- Integrate a real payment gateway such as Razorpay or Stripe
+- Add email, SMS, or push notifications for shipment updates
+- Add QR code or barcode generation for each shipment
+- Add estimated delivery time calculation
+- Add route optimization for drivers
+- Add proof-of-delivery image upload
+- Add downloadable invoice generation
+- Add real-time driver-location updates using WebSockets
+- Add analytics
